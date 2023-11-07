@@ -6,9 +6,9 @@ import '../../../size_config.dart';
 
 class UserCallingCard extends StatelessWidget {
   const UserCallingCard({
-    Key key,
-    @required this.name,
-    @required this.image,
+    Key? key,
+    required this.name,
+    required this.image,
   }) : super(key: key);
 
   final String name, image;

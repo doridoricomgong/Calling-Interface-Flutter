@@ -1,40 +1,45 @@
 import 'package:flutter/material.dart';
 
-// SizeConfig help us to make our UI responsive
-/// Make sure you need to call [SizeConfig.init(context)] on your starting screen
 class SizeConfig {
-  static MediaQueryData _mediaQueryData;
-  static double screenWidth;
-  static double screenHeight;
-  static double defaultSize;
-  static Orientation orientation;
+  static late MediaQueryData _mediaQueryData;
+  static double screenWidth = 0.0;
+  static double screenHeight = 0.0;
+  static double blockSizeHorizontal = 0.0;
+  static double blockSizeVertical = 0.0;
+
+  static double textMultiplier = 0.0;
+  static double imageSizeMultiplier = 0.0;
 
   void init(BuildContext context) {
     _mediaQueryData = MediaQuery.of(context);
     screenWidth = _mediaQueryData.size.width;
     screenHeight = _mediaQueryData.size.height;
-    orientation = _mediaQueryData.orientation;
+
+    blockSizeHorizontal = screenWidth / 100;
+    blockSizeVertical = screenHeight / 100;
+
+    textMultiplier = blockSizeVertical;
+    imageSizeMultiplier = blockSizeHorizontal;
+
+    // Other initializations, if needed
   }
 }
 
-// Get the proportionate height as per screen size
+
+
 double getProportionateScreenHeight(double inputHeight) {
-  double screenHeight = SizeConfig.screenHeight;
-  // Our designer use iPhone 11, that's why we use 896.0
+  double screenHeight = SizeConfig.screenHeight ?? 896.0;
   return (inputHeight / 896.0) * screenHeight;
 }
 
-// Get the proportionate height as per screen size
 double getProportionateScreenWidth(double inputWidth) {
-  double screenWidth = SizeConfig.screenWidth;
-  // 414 is the layout width that designer use or you can say iPhone 11  width
+  double screenWidth = SizeConfig.screenWidth ?? 414.0;
   return (inputWidth / 414.0) * screenWidth;
 }
 
-// For add free space vertically
 class VerticalSpacing extends StatelessWidget {
   const VerticalSpacing({
-    Key key,
+    Key? key,
     this.of = 20,
   }) : super(key: key);
 
@@ -48,10 +53,9 @@ class VerticalSpacing extends StatelessWidget {
   }
 }
 
-// For add free space horizontally
 class HorizontalSpacing extends StatelessWidget {
   const HorizontalSpacing({
-    Key key,
+    Key? key,
     this.of = 20,
   }) : super(key: key);
 

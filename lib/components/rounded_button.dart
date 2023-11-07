@@ -5,12 +5,12 @@ import '../size_config.dart';
 
 class RoundedButton extends StatelessWidget {
   const RoundedButton({
-    Key key,
+    Key? key,
     this.size = 64,
-    @required this.iconSrc,
+    required this.iconSrc,
     this.color = Colors.white,
     this.iconColor = Colors.black,
-    @required this.press,
+    required this.press,
   }) : super(key: key);
 
   final double size;
@@ -23,12 +23,12 @@ class RoundedButton extends StatelessWidget {
     return SizedBox(
       height: getProportionateScreenWidth(size),
       width: getProportionateScreenWidth(size),
-      child: FlatButton(
-        padding: EdgeInsets.all(15 / 64 * size),
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(100)),
+      child: TextButton(
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.all(15 / 64 * size),
+          shape: const CircleBorder(),
+          backgroundColor: color,
         ),
-        color: color,
         onPressed: press,
         child: SvgPicture.asset(iconSrc, color: iconColor),
       ),

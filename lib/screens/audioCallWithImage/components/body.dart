@@ -2,6 +2,7 @@ import 'package:calling/components/rounded_button.dart';
 import 'package:calling/constants.dart';
 import 'package:calling/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:calling/screens/dialScreen/dial_screen.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -25,15 +26,12 @@ class Body extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Jemmy \nWilliams",
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline3
-                      .copyWith(color: Colors.white),
+                  "010-5676-4437",
+                  style: Theme.of(context).textTheme.headline3?.copyWith(color: Colors.white),
                 ),
                 VerticalSpacing(of: 10),
                 Text(
-                  "Incoming 00:01".toUpperCase(),
+                  "전화 오는 중".toUpperCase(),
                   style: TextStyle(
                     color: Colors.white.withOpacity(0.6),
                   ),
@@ -47,8 +45,13 @@ class Body extends StatelessWidget {
                       iconSrc: "assets/icons/Icon Mic.svg",
                     ),
                     RoundedButton(
-                      press: () {},
-                      color: kRedColor,
+                      press: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => DialScreen()),
+                        );
+                      },
+                      color: kGreenColor,
                       iconColor: Colors.white,
                       iconSrc: "assets/icons/call_end.svg",
                     ),

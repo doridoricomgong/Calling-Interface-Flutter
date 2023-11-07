@@ -4,9 +4,9 @@ import '../size_config.dart';
 
 class DialUserPic extends StatelessWidget {
   const DialUserPic({
-    Key key,
-    this.size = 192,
-    @required this.image,
+    Key? key,
+    this.size = 240,
+    required this.image,
   }) : super(key: key);
 
   final double size;
@@ -15,7 +15,6 @@ class DialUserPic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(30 / 192 * size),
       height: getProportionateScreenWidth(size),
       width: getProportionateScreenWidth(size),
       decoration: BoxDecoration(

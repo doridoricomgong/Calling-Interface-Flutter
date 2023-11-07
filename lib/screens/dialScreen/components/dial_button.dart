@@ -3,36 +3,47 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../size_config.dart';
 
-class DialButton extends StatelessWidget {
+class DialButton extends StatefulWidget {
+  // Define the fields that you expect to pass into DialButton, if any.
+  // For instance, if you want to pass in text and iconSrc, you'd define them like this:
+  final String iconSrc;
+  final String text;
+  final VoidCallback press;
+
   const DialButton({
-    Key key,
-    @required this.iconSrc,
-    @required this.text,
-    @required this.press,
+    Key? key,
+    required this.iconSrc,
+    required this.text,
+    required this.press,
   }) : super(key: key);
 
-  final String iconSrc, text;
-  final VoidCallback press;
+  @override
+  _DialButtonState createState() => _DialButtonState();
+}
+
+class _DialButtonState extends State<DialButton> {
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: getProportionateScreenWidth(120),
-      child: FlatButton(
-        padding: EdgeInsets.symmetric(
-          vertical: getProportionateScreenWidth(20),
+      child: TextButton(
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.symmetric(
+            vertical: getProportionateScreenWidth(20),
+          ),
         ),
-        onPressed: press,
+        onPressed: widget.press,
         child: Column(
           children: [
             SvgPicture.asset(
-              iconSrc,
+              widget.iconSrc,
               color: Colors.white,
               height: 36,
             ),
             VerticalSpacing(of: 5),
             Text(
-              text,
+              widget.text,
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 13,
