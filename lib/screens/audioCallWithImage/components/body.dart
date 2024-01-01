@@ -25,40 +25,94 @@ class Body extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "010-5676-4437",
-                  style: Theme.of(context).textTheme.headline3?.copyWith(color: Colors.white),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: Image.asset(
+                        'assets/images/adotIcon.png',
+                        width: 25,
+                        height: 25,
+                      ),
+                    ),
+                    SizedBox(
+                        width: 4.0), // Add some spacing between icon and text
+                    Text(
+                      "에이닷 음성 통화...".toUpperCase(),
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white.withOpacity(1.0),
+                      ),
+                    ),
+                  ],
                 ),
                 VerticalSpacing(of: 10),
-                Text(
-                  "전화 오는 중".toUpperCase(),
-                  style: TextStyle(
-                    color: Colors.white.withOpacity(0.6),
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "010-1234-1234",
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline3
+                          ?.copyWith(color: Colors.white),
+                    ),
+                  ],
                 ),
                 Spacer(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    RoundedButton(
-                      press: () {},
-                      iconSrc: "assets/icons/Icon Mic.svg",
-                    ),
-                    RoundedButton(
-                      press: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => DialScreen()),
-                        );
-                      },
-                      color: kGreenColor,
-                      iconColor: Colors.white,
-                      iconSrc: "assets/icons/call_end.svg",
-                    ),
-                    RoundedButton(
-                      press: () {},
-                      iconSrc: "assets/icons/Icon Volume.svg",
-                    ),
+                    Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          RoundedButton(
+                            press: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => DialScreen()),
+                              );
+                            },
+                            color: kRedColor,
+                            iconColor: Colors.white,
+                            iconSrc: "assets/icons/call_end.svg",
+                          ),
+                          VerticalSpacing(of: 3),
+                          Text(
+                            "거절".toUpperCase(),
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.white.withOpacity(1.0),
+                            ),
+                          ),
+                        ]),
+                    HorizontalSpacing(of: 10),
+                    Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          RoundedButton(
+                            press: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => DialScreen()),
+                              );
+                            },
+                            color: kGreenColor,
+                            iconColor: Colors.white,
+                            iconSrc: "assets/icons/call_start.svg",
+                          ),
+                          VerticalSpacing(of: 3),
+                          Text(
+                            "응답".toUpperCase(),
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.white.withOpacity(1.0),
+                            ),
+                          ),
+                        ]),
                   ],
                 ),
               ],
